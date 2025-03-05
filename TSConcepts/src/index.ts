@@ -98,3 +98,82 @@
 
 
 
+function typeAlias() {
+
+    type Employee = {
+        name: string,
+        age: number,
+        salary: number
+    };
+
+    const employee1: Employee = {
+        name: "James",
+        age: 11,
+        salary: 33.22
+    }
+
+    console.log(employee1);
+
+    type SumFunction = (number1: number, number2: number) => number;
+
+    const sum: SumFunction = (x, y) => x + y;
+
+    console.log(sum(3, 22));
+
+
+    //union types 
+
+    type numberOrString = number | string;
+
+    let value: numberOrString = 22;
+    value = "Hello World!";
+
+    console.log(value);
+
+
+    //intersection
+
+    type Animal = {
+        kind: string,
+        weight: number
+    };
+
+    type HasAWind = {
+        windLength: number
+    };
+
+    type Bird = Animal & HasAWind;
+
+    let parrot: Bird = {
+        kind: "Jacop",
+        weight: 22.3,
+        windLength: 10
+    }
+
+
+    console.log(parrot);
+
+
+    //tuple 
+    type Point = [number, number];
+
+    const Position: Point = [222, 197];
+
+    //array
+
+    type Person = {
+        name: string,
+        age: number
+    };
+
+    type People = Person[];
+
+
+
+
+
+}
+
+typeAlias();
+
+

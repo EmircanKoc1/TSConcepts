@@ -61,3 +61,24 @@
 //     console.log(maybeOtherDataTypes);
 // }
 // dataTypes();
+function typeAlias() {
+    const employee1 = {
+        name: "James",
+        age: 11,
+        salary: 33.22
+    };
+    console.log(employee1);
+    const sum = (x, y) => x + y;
+    console.log(sum(3, 22));
+    let value = 22;
+    value = "Hello World!";
+    console.log(value);
+    let parrot = {
+        kind: "Jacop",
+        weight: 22.3,
+        windLength: 10
+    };
+    console.log(parrot);
+    const Position = [222, 197];
+}
+typeAlias();
