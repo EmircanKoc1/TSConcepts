@@ -316,95 +316,214 @@
 
 
 
-function statements() {
+// function statements() {
 
-    let year = 11;
+//     let year = 11;
 
-    if (year < 6) {
-        console.log("child");
-    } else if (year > 6 && year <= 12) {
-        console.log("teen");
-    } else {
-        console.log("adult");
-    }
-
-
-    let day: number = 3;
-    let dayName: string;
-
-    switch (day) {
-        case 1:
-            dayName = "Monday";
-            break;
-        case 2:
-            dayName = "Tuesday";
-            break;
-        case 3:
-            dayName = "Wednesday";
-            break;
-        case 4:
-            dayName = "Thursday";
-            break;
-        case 5:
-            dayName = "Friday";
-            break;
-        case 6:
-            dayName = "Saturday";
-            break;
-        case 7:
-            dayName = "Sunday";
-            break;
-        default:
-            dayName = "Invalid day";
-            break;
-    }
-
-    console.log(dayName);
-
-    for (let i = 0; i < 10; i++) {
-        console.log(i);
-    }
-
-    let current = 0;
-    let limit = 10;
-
-    while (current < limit) {
-        console.log(current);
-        current++;
-    }
-
-    let i = 0;
-
-    do {
-        console.log(i);
-        i++;
-    } while (i < 5);
+//     if (year < 6) {
+//         console.log("child");
+//     } else if (year > 6 && year <= 12) {
+//         console.log("teen");
+//     } else {
+//         console.log("adult");
+//     }
 
 
-    const butterfly: {
-        [key: string]: string | number
-    } = {
-        color: "red",
-        windCount: 4,
+//     let day: number = 3;
+//     let dayName: string;
+
+//     switch (day) {
+//         case 1:
+//             dayName = "Monday";
+//             break;
+//         case 2:
+//             dayName = "Tuesday";
+//             break;
+//         case 3:
+//             dayName = "Wednesday";
+//             break;
+//         case 4:
+//             dayName = "Thursday";
+//             break;
+//         case 5:
+//             dayName = "Friday";
+//             break;
+//         case 6:
+//             dayName = "Saturday";
+//             break;
+//         case 7:
+//             dayName = "Sunday";
+//             break;
+//         default:
+//             dayName = "Invalid day";
+//             break;
+//     }
+
+//     console.log(dayName);
+
+//     for (let i = 0; i < 10; i++) {
+//         console.log(i);
+//     }
+
+//     let current = 0;
+//     let limit = 10;
+
+//     while (current < limit) {
+//         console.log(current);
+//         current++;
+//     }
+
+//     let i = 0;
+
+//     do {
+//         console.log(i);
+//         i++;
+//     } while (i < 5);
+
+
+//     const butterfly: {
+//         [key: string]: string | number
+//     } = {
+//         color: "red",
+//         windCount: 4,
+//     };
+
+//     for (const key in butterfly) {
+//         console.log(`${key} : ${butterfly[key]}`);
+
+//     }
+
+//     const numbers: number[] = [1, 2, 34, 5, 8];
+
+//     for (const index in numbers) {
+
+//         console.log(`${index} : ${numbers[index]}`);
+//     }
+
+//     for (const number of numbers) {
+//         console.log(number);
+
+//     }
+
+// }
+// statements();
+
+
+function interfaces() {
+
+    interface User {
+        name: string,
+        password: string,
+        age: number
     };
 
-    for (const key in butterfly) {
-        console.log(`${key} : ${butterfly[key]}`);
+    interface OtherUser {
+        name: string,
+        password: string,
+        age?: number
+    };
+
+    let user: User = {
+        name: "emir",
+        password: "123",
+        age: 23
+    };
+
+    let user2: OtherUser = {
+        name: "emir",
+        password: "123"
+    };
+    user2.name = "Updated emircan";
+
+    interface Car {
+        readonly brand: string;
+    };
+
+
+    let car: Car = {
+        brand: "Mercedes"
+    };
+
+    // car.brand = "BMW"; //err
+
+    interface MathOperation {
+        //call signature
+        (a: number, b: number): number;
+    }
+
+    interface MathOperation2 {
+        //method signature
+        sum(a: number, n: number): number;
+    }
+
+    const sum: MathOperation = (x, y) => x + y;
+    console.log(sum(1, 333333333));
+
+    const sum2: MathOperation2 = {
+        sum(a, b) {
+            return a + b;
+        }
+    };
+
+
+    interface MathOperation3 {
+
+        (number1: number, number2: number): number;
+        (number1: number, number2: number, number3: number): number;
+
 
     }
 
-    const numbers: number[] = [1, 2, 34, 5, 8];
+    const summer: MathOperation3 = (number1, number2, number3?) => {
 
-    for (const index in numbers) {
-
-        console.log(`${index} : ${numbers[index]}`);
-    }
-
-    for (const number of numbers) {
-        console.log(number);
+        if (typeof number3 === "number") {
+            return number1 + number2 + number3;
+        }
+        return number1 + number2;
 
     }
 
-}
-statements();
 
+    console.log(summer(111, 222));
+    console.log(summer(111, 222, 4444));
+
+    type ThreeParameterSum = (a: number, b: number, c: number) => number;
+    type TwoParametersum = (a: number, b: number) => number;
+
+    type CustomParameterType = ThreeParameterSum & TwoParametersum;
+
+    const summer2: CustomParameterType = (a, b, c?) => {
+
+
+        if (typeof c === "number") {
+            return a + b + c;
+
+        }
+
+        return a + b;
+
+
+    }
+
+    console.log(summer2(1, 2));
+
+    interface Animal {
+        kind: string;
+    }
+
+    interface Dog extends Animal {
+        color: string;
+    }
+
+    const dog: Dog = {
+        kind: "bulldog",
+        color: "brown"
+    };
+
+    console.log(dog);
+
+
+};
+
+
+interfaces();
