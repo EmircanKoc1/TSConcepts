@@ -196,3 +196,73 @@
 //     })
 // }
 // Functions();
+function statements() {
+    let year = 11;
+    if (year < 6) {
+        console.log("child");
+    }
+    else if (year > 6 && year <= 12) {
+        console.log("teen");
+    }
+    else {
+        console.log("adult");
+    }
+    let day = 3;
+    let dayName;
+    switch (day) {
+        case 1:
+            dayName = "Monday";
+            break;
+        case 2:
+            dayName = "Tuesday";
+            break;
+        case 3:
+            dayName = "Wednesday";
+            break;
+        case 4:
+            dayName = "Thursday";
+            break;
+        case 5:
+            dayName = "Friday";
+            break;
+        case 6:
+            dayName = "Saturday";
+            break;
+        case 7:
+            dayName = "Sunday";
+            break;
+        default:
+            dayName = "Invalid day";
+            break;
+    }
+    console.log(dayName);
+    for (let i = 0; i < 10; i++) {
+        console.log(i);
+    }
+    let current = 0;
+    let limit = 10;
+    while (current < limit) {
+        console.log(current);
+        current++;
+    }
+    let i = 0;
+    do {
+        console.log(i);
+        i++;
+    } while (i < 5);
+    const butterfly = {
+        color: "red",
+        windCount: 4,
+    };
+    for (const key in butterfly) {
+        console.log(`${key} : ${butterfly[key]}`);
+    }
+    const numbers = [1, 2, 34, 5, 8];
+    for (const index in numbers) {
+        console.log(`${index} : ${numbers[index]}`);
+    }
+    for (const number of numbers) {
+        console.log(number);
+    }
+}
+statements();
