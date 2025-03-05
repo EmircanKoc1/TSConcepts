@@ -409,121 +409,351 @@
 // statements();
 
 
-function interfaces() {
+// function interfaces() {
 
-    interface User {
-        name: string,
-        password: string,
-        age: number
-    };
+//     interface User {
+//         name: string,
+//         password: string,
+//         age: number
+//     };
 
-    interface OtherUser {
-        name: string,
-        password: string,
-        age?: number
-    };
+//     interface OtherUser {
+//         name: string,
+//         password: string,
+//         age?: number
+//     };
 
-    let user: User = {
-        name: "emir",
-        password: "123",
-        age: 23
-    };
+//     let user: User = {
+//         name: "emir",
+//         password: "123",
+//         age: 23
+//     };
 
-    let user2: OtherUser = {
-        name: "emir",
-        password: "123"
-    };
-    user2.name = "Updated emircan";
+//     let user2: OtherUser = {
+//         name: "emir",
+//         password: "123"
+//     };
+//     user2.name = "Updated emircan";
 
-    interface Car {
-        readonly brand: string;
-    };
+//     interface Car {
+//         readonly brand: string;
+//     };
 
 
-    let car: Car = {
-        brand: "Mercedes"
-    };
+//     let car: Car = {
+//         brand: "Mercedes"
+//     };
 
-    // car.brand = "BMW"; //err
+//     // car.brand = "BMW"; //err
 
-    interface MathOperation {
-        //call signature
-        (a: number, b: number): number;
-    }
+//     interface MathOperation {
+//         //call signature
+//         (a: number, b: number): number;
+//     }
 
-    interface MathOperation2 {
-        //method signature
-        sum(a: number, n: number): number;
-    }
+//     interface MathOperation2 {
+//         //method signature
+//         sum(a: number, n: number): number;
+//     }
 
-    const sum: MathOperation = (x, y) => x + y;
-    console.log(sum(1, 333333333));
+//     const sum: MathOperation = (x, y) => x + y;
+//     console.log(sum(1, 333333333));
 
-    const sum2: MathOperation2 = {
-        sum(a, b) {
-            return a + b;
+//     const sum2: MathOperation2 = {
+//         sum(a, b) {
+//             return a + b;
+//         }
+//     };
+
+
+//     interface MathOperation3 {
+
+//         (number1: number, number2: number): number;
+//         (number1: number, number2: number, number3: number): number;
+
+
+//     }
+
+//     const summer: MathOperation3 = (number1, number2, number3?) => {
+
+//         if (typeof number3 === "number") {
+//             return number1 + number2 + number3;
+//         }
+//         return number1 + number2;
+
+//     }
+
+
+//     console.log(summer(111, 222));
+//     console.log(summer(111, 222, 4444));
+
+//     type ThreeParameterSum = (a: number, b: number, c: number) => number;
+//     type TwoParametersum = (a: number, b: number) => number;
+
+//     type CustomParameterType = ThreeParameterSum & TwoParametersum;
+
+//     const summer2: CustomParameterType = (a, b, c?) => {
+
+
+//         if (typeof c === "number") {
+//             return a + b + c;
+
+//         }
+
+//         return a + b;
+
+
+//     }
+
+//     console.log(summer2(1, 2));
+
+//     interface Animal {
+//         kind: string;
+//     }
+
+//     interface Dog extends Animal {
+//         color: string;
+//     }
+
+//     const dog: Dog = {
+//         kind: "bulldog",
+//         color: "brown"
+//     };
+
+//     console.log(dog);
+
+
+// };
+
+
+// interfaces();
+
+
+
+function classes() {
+
+    type Gender = "Female" | "Male";
+
+    class Person {
+
+        name: string;
+        public age: number;
+        private gender: Gender;
+        private _birthdate?: Date;
+
+        get birthdate(): string {
+
+            if (this._birthdate != null) {
+                return this._birthdate.toLocaleDateString();
+            }
+            return "The birthdate is unknown!";
         }
-    };
 
+        set birthdate(date: Date) {
+            let currentDate = new Date();
 
-    interface MathOperation3 {
-
-        (number1: number, number2: number): number;
-        (number1: number, number2: number, number3: number): number;
-
-
-    }
-
-    const summer: MathOperation3 = (number1, number2, number3?) => {
-
-        if (typeof number3 === "number") {
-            return number1 + number2 + number3;
-        }
-        return number1 + number2;
-
-    }
-
-
-    console.log(summer(111, 222));
-    console.log(summer(111, 222, 4444));
-
-    type ThreeParameterSum = (a: number, b: number, c: number) => number;
-    type TwoParametersum = (a: number, b: number) => number;
-
-    type CustomParameterType = ThreeParameterSum & TwoParametersum;
-
-    const summer2: CustomParameterType = (a, b, c?) => {
-
-
-        if (typeof c === "number") {
-            return a + b + c;
+            if (currentDate >= date) {
+                this._birthdate = date;
+            }
 
         }
 
-        return a + b;
 
 
-    }
+        constructor(name: string, age: number, gender: Gender) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        }
 
-    console.log(summer2(1, 2));
+        public introduce(): void {
+            console.log(`Hello, I am ${this.name} , I am ${this.age} years old, and I am a ${this.gender}`);
+        }
 
-    interface Animal {
-        kind: string;
-    }
-
-    interface Dog extends Animal {
-        color: string;
-    }
-
-    const dog: Dog = {
-        kind: "bulldog",
-        color: "brown"
     };
 
-    console.log(dog);
+    const person1: Person = new Person("Emircan", 23, "Female");
+    person1.introduce();
+    person1.birthdate = new Date("1999-05-11");
+    console.log(person1.birthdate);
+
+    class MathUtil {
+        static readonly Pi: number = 3.14;
+        static InitValue: number = 0;
+        static readonly SUBTRACT_OPERATOR_SYMBOL: string = "-";
+    }
 
 
-};
+    console.log(MathUtil.Pi);
+    // MathUtils.Pi = 22; //err
+    console.log(MathUtil.InitValue);
+    MathUtil.InitValue = 33;
+    console.log(MathUtil.InitValue);
 
 
-interfaces();
+    class Shape {
+        protected area: number = 0;
+    }
+
+    class Rectangle extends Shape {
+
+        setArea(area: number): void {
+            this.area = area;
+        }
+
+    }
+
+    abstract class Animal {
+        abstract makeSound(): void;
+    }
+
+    class Sheep implements Animal {
+        makeSound(): void {
+            console.log("meee! meee!!");
+
+        }
+
+    }
+
+
+
+    const sheep: Sheep = new Sheep();
+    sheep.makeSound();
+
+    class ProductService {
+        private readonly _apiAdress: string;
+
+        constructor() {
+            this._apiAdress = "hello";
+        }
+
+        setApiAdress(): void {
+            // this._apiAdress = "wlnıownwe";//err
+        }
+    }
+
+    interface IShape {
+        getArea(): number;
+    }
+
+    class Square implements IShape {
+
+        constructor(private widthOrHeight: number) { }
+
+        getArea(): number {
+            return this.widthOrHeight * this.widthOrHeight;
+        }
+
+    }
+
+
+    class Human {
+        walk(): void {
+            console.log("The human is walking");
+
+        }
+    }
+
+    class FatHuman extends Human {
+
+        // constructor(){
+        //     super();
+        // }
+
+        walk(): void {
+            console.log("The fat human walking");
+        }
+
+    }
+
+    const human1: FatHuman = new FatHuman();
+    const human2: Human = human1;
+    human1.walk();
+    human2.walk();
+
+    class First {
+        write() {
+            console.log("first");
+        }
+    }
+
+    class Second {
+        write() {
+            console.log("second");
+
+        }
+    }
+
+    let variable: First;
+    variable = new Second();
+    variable.write();
+
+
+    class Calculator {
+
+        add(a: number, b: number): number;
+        add(a: string, b: string): string;
+        add(a: boolean, b: boolean): boolean;
+
+
+        add(a: number | string | boolean, b: number | string | boolean): number | string | boolean {
+
+            if (typeof a === "number" && typeof b === "number") {
+                return a + b;
+            }
+            else if (typeof a === "string" && typeof b === "string") {
+                return a + b;
+            } else if (typeof a === "boolean" && typeof b === "boolean") {
+                return true;
+            } else {
+                throw new Error("parameters not matched");
+            }
+
+
+            // add(a: unknown, b: unknown): unknown | never {
+
+            //     if (typeof a === "number" && typeof b === "number") {
+            //         return a + b;
+            //     }
+            //     else if (typeof a === "string" && typeof b === "string") {
+            //         return a + b;
+            //     } else if (typeof a === "boolean" && typeof b === "boolean") {
+            //         return true;
+            //     } else {
+            //         throw new Error("parameters not matched");
+            //     }
+
+        }
+
+
+    }
+
+    const calc = new Calculator();
+    console.log(calc.add(1, 2));
+    console.log(calc.add(true, true));
+    console.log(calc.add("22", "33"));
+
+
+    class Config {
+
+        private constructor() { }
+
+        private static _config?: Config;
+
+        static GetConfig(): Config {
+
+            return this._config ??= new Config();
+
+        }
+
+    }
+
+
+
+
+}
+
+
+classes();
+
+
