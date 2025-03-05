@@ -898,3 +898,22 @@
 // Generics();
 
 
+import { subtract, sum } from "./math";
+
+console.log(subtract(33, 2));
+console.log(sum(33, 2, 11));
+
+import Person from "./person"
+
+const person1: Person = {
+    age: 23,
+    name: "Emircan",
+    surname: "Koç"
+}
+
+
+async function loadModule(): Promise<void> {
+    const module = await import("./math");
+    console.log(module.sum(2, 3));
+
+}
