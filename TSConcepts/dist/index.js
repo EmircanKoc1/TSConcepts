@@ -61,24 +61,98 @@
 //     console.log(maybeOtherDataTypes);
 // }
 // dataTypes();
-function typeAlias() {
-    const employee1 = {
-        name: "James",
-        age: 11,
-        salary: 33.22
-    };
-    console.log(employee1);
-    const sum = (x, y) => x + y;
-    console.log(sum(3, 22));
-    let value = 22;
-    value = "Hello World!";
-    console.log(value);
-    let parrot = {
-        kind: "Jacop",
-        weight: 22.3,
-        windLength: 10
-    };
-    console.log(parrot);
-    const Position = [222, 197];
+// function typeAlias() {
+//     type Employee = {
+//         name: string,
+//         age: number,
+//         salary: number
+//     };
+//     const employee1: Employee = {
+//         name: "James",
+//         age: 11,
+//         salary: 33.22
+//     }
+//     console.log(employee1);
+//     type SumFunction = (number1: number, number2: number) => number;
+//     const sum: SumFunction = (x, y) => x + y;
+//     console.log(sum(3, 22));
+//     //union types 
+//     type numberOrString = number | string;
+//     let value: numberOrString = 22;
+//     value = "Hello World!";
+//     console.log(value);
+//     //intersection
+//     type Animal = {
+//         kind: string,
+//         weight: number
+//     };
+//     type HasAWind = {
+//         windLength: number
+//     };
+//     type Bird = Animal & HasAWind;
+//     let parrot: Bird = {
+//         kind: "Jacop",
+//         weight: 22.3,
+//         windLength: 10
+//     }
+//     console.log(parrot);
+//     //tuple 
+//     type Point = [number, number];
+//     const Position: Point = [222, 197];
+//     //array
+//     type Person = {
+//         name: string,
+//         age: number
+//     };
+//     type People = Person[];
+// }
+// typeAlias();
+function Operators() {
+    let a = 100;
+    let b = 2;
+    console.log(a + b);
+    console.log(a / b);
+    console.log(a - b);
+    console.log(a * b);
+    console.log(a % b);
+    let x = 10;
+    let y = 5;
+    let z = "10";
+    // console.log(x == z);   //err
+    console.log(x == Number(z)); //true
+    // console.log(x === z);  //err
+    // console.log(x != y);   //err
+    // console.log(x !== z);  //err
+    console.log(x > y); // true
+    console.log(x < y); // false
+    console.log(x >= 10); // true
+    console.log(x <= 9); // false
+    let firstCondition = true;
+    let secondCondition = false;
+    console.log(firstCondition && secondCondition); //false
+    console.log(firstCondition || secondCondition); //true
+    console.log(!firstCondition); //false
+    console.log(!secondCondition); //true
+    let num = 42;
+    let str = "Hello";
+    let isActive = true;
+    let obj = { name: "Alice" };
+    console.log(typeof num); // "number"
+    console.log(typeof str); // "string"
+    console.log(typeof isActive); // "boolean"
+    console.log(typeof obj); // "object"
+    console.log(typeof undefined); // "undefined"
+    console.log(typeof null); //object
+    class Person {
+        constructor(name) {
+            this.name = name;
+        }
+    }
+    let person1 = new Person("Alice");
+    console.log(person1 instanceof Person); // true
+    console.log(person1 instanceof Object); // true
+    let arr = [1, 2, 3];
+    console.log(arr instanceof Array); // true
+    console.log(arr instanceof Object); // true
 }
-typeAlias();
+Operators();
