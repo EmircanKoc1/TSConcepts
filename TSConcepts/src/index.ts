@@ -758,143 +758,143 @@
 
 
 
-function Generics() {
+// function Generics() {
 
-    function combine<T, U>(a: T, b: U) {
+//     function combine<T, U>(a: T, b: U) {
 
-        return `${a} - ${b}`;
-    }
-
-
-    console.log(combine<number, string>(1, "emir"));
-    console.log(combine(1, "emir"));
-
-    class List<T> {
-
-        private _datas: T[] = [];
+//         return `${a} - ${b}`;
+//     }
 
 
-        get Length(): number {
-            return this._datas.length;
-        }
-        add(value: T): void {
-            this._datas.push(value);
+//     console.log(combine<number, string>(1, "emir"));
+//     console.log(combine(1, "emir"));
 
-        }
+//     class List<T> {
 
-        remove(value: T): void {
-            this._datas = this._datas.filter(data => data !== value);
-
-        }
-        toArray(): T[] {
-            return [...this._datas];
-        }
-
-    }
-
-    const list = new List<number>();
-
-    list.add(22);
-    list.add(33);
-    list.add(44);
-    list.add(44);
-    list.add(44);
-
-    console.log(list.Length);
-    console.log(list.toArray());
-
-    list.remove(44);
-
-    console.log(list.toArray());
-
-    interface KeyValuePair<T1, T2> {
-        key: T1,
-        value: T2
-    };
-
-    const keyValuePair: KeyValuePair<number, number> = {
-        key: 1,
-        value: 1
-    };
-
-    type Nullable<T> = {
-        value: T | null
-    };
-
-    const nullOrNumber: Nullable<number> = { value: 2020 };
-
-    console.log(nullOrNumber.value);
+//         private _datas: T[] = [];
 
 
-    interface Person {
-        name: string,
-        age: number
-    };
+//         get Length(): number {
+//             return this._datas.length;
+//         }
+//         add(value: T): void {
+//             this._datas.push(value);
 
-    function writePersonDetails<T extends Person>(value: T) {
+//         }
 
-        console.log(value.name, "-", value.age);
+//         remove(value: T): void {
+//             this._datas = this._datas.filter(data => data !== value);
 
-    }
+//         }
+//         toArray(): T[] {
+//             return [...this._datas];
+//         }
 
-    const person1: Person = {
-        name: "Emircan",
-        age: 23
-    };
+//     }
 
-    const person2: Person = {
-        name: "Mahmut",
-        age: 33
-    };
+//     const list = new List<number>();
 
+//     list.add(22);
+//     list.add(33);
+//     list.add(44);
+//     list.add(44);
+//     list.add(44);
 
-    writePersonDetails(person1);
-    writePersonDetails(person2);
-    // writePersonDetails({ surname: "xxxx" }) //The object is not a person //error
+//     console.log(list.Length);
+//     console.log(list.toArray());
 
+//     list.remove(44);
 
-    console.log();
+//     console.log(list.toArray());
 
-    type PersonKeys = keyof Person;
+//     interface KeyValuePair<T1, T2> {
+//         key: T1,
+//         value: T2
+//     };
 
-    const key: PersonKeys = "age";
+//     const keyValuePair: KeyValuePair<number, number> = {
+//         key: 1,
+//         value: 1
+//     };
 
-    console.log(key);
+//     type Nullable<T> = {
+//         value: T | null
+//     };
 
-    function GetDetail<T, K extends keyof T>(obj: T, key: K): T[K] {
-        return obj[key];
-    }
+//     const nullOrNumber: Nullable<number> = { value: 2020 };
 
-    type Animal = {
-        name: string,
-        height: number
-    };
-
-    let dog: Animal = {
-        name: "josef",
-        height: 1.11
-    };
-
-    console.log(GetDetail<Animal, keyof Animal>(dog, "height"));
-    console.log(GetDetail<Animal, keyof Animal>(dog, "name"));
-
-    type Response<T = unknown> = {
-        value: T
-    };
-
-    const res1: Response = { value: "emir" };
-    const res2: Response<string> = { value: "emir" };
+//     console.log(nullOrNumber.value);
 
 
-    function merge<T1, T2>(value1: T1, value2: T2): T1 & T2 {
-        return { ...value1, ...value2 };
-    }
+//     interface Person {
+//         name: string,
+//         age: number
+//     };
+
+//     function writePersonDetails<T extends Person>(value: T) {
+
+//         console.log(value.name, "-", value.age);
+
+//     }
+
+//     const person1: Person = {
+//         name: "Emircan",
+//         age: 23
+//     };
+
+//     const person2: Person = {
+//         name: "Mahmut",
+//         age: 33
+//     };
+
+
+//     writePersonDetails(person1);
+//     writePersonDetails(person2);
+//     // writePersonDetails({ surname: "xxxx" }) //The object is not a person //error
+
+
+//     console.log();
+
+//     type PersonKeys = keyof Person;
+
+//     const key: PersonKeys = "age";
+
+//     console.log(key);
+
+//     function GetDetail<T, K extends keyof T>(obj: T, key: K): T[K] {
+//         return obj[key];
+//     }
+
+//     type Animal = {
+//         name: string,
+//         height: number
+//     };
+
+//     let dog: Animal = {
+//         name: "josef",
+//         height: 1.11
+//     };
+
+//     console.log(GetDetail<Animal, keyof Animal>(dog, "height"));
+//     console.log(GetDetail<Animal, keyof Animal>(dog, "name"));
+
+//     type Response<T = unknown> = {
+//         value: T
+//     };
+
+//     const res1: Response = { value: "emir" };
+//     const res2: Response<string> = { value: "emir" };
+
+
+//     function merge<T1, T2>(value1: T1, value2: T2): T1 & T2 {
+//         return { ...value1, ...value2 };
+//     }
 
 
 
-}
+// }
 
 
-Generics();
+// Generics();
 
 
