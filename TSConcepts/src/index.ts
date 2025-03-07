@@ -919,68 +919,184 @@
 // }
 
 
-const promise = new Promise<string>((resolve, reject) => {
+// const promise = new Promise<string>((resolve, reject) => {
 
-    // let success = false;
-    let success = false;
+//     // let success = false;
+//     let success = false;
 
-    if (success)
-        return resolve("The process was completed successfully")
-    else
-        return reject("An error occurred!")
+//     if (success)
+//         return resolve("The process was completed successfully")
+//     else
+//         return reject("An error occurred!")
 
-});
-
-
-// promise.then<void, void>((value) => {
-//     console.log(value);
-
-// }).catch<void>((err: string) => {
-//     console.log(err);
 // });
 
 
-export { };
+// // promise.then<void, void>((value) => {
+// //     console.log(value);
 
-try {
-    const promiseResult = await promise;
-    console.log(promiseResult);
+// // }).catch<void>((err: string) => {
+// //     console.log(err);
+// // });
 
+
+// export { };
+
+// try {
+//     const promiseResult = await promise;
+//     console.log(promiseResult);
+
+// }
+// catch (error) {
+//     console.log(error);
+
+// }
+
+
+// type AsyncFn<T = unknown> = () => Promise<T>;
+
+// const asyncFn: AsyncFn<string> = () => {
+
+//     const flag = false;
+//     // const flag = true;
+
+//     return new Promise<string>((resolve, reject) => {
+//         setTimeout(() => {
+//             if (flag)
+//                 resolve("Hello World");
+//             else
+//                 reject("An error occured!")
+//         }, 1000)
+
+
+//     });
+// }
+
+
+// try {
+//     const result = await asyncFn();
+//     console.log(result);
+
+// } catch (error) {
+//     console.log(error);
+
+// }
+
+
+//Utility types 
+
+type User = {
+    name: string,
+    age: number,
+    email: string
+};
+
+
+// const user: User = {
+//     name : "emir"
+// }; error
+
+
+type PartialUser = Partial<User>;
+
+const user: PartialUser = {
+    name: "emir"
+};
+
+type Dog = {
+    name: string,
+    color: string
+    kind: string
+};
+
+const readonlyDog: Readonly<Dog> = {
+    name: "robin",
+    color: "black",
+    kind: "bulldog"
+};
+
+// readonlyDog.color = "red"; error because dog is readonly 
+
+type DogSummary = Pick<Dog, "name">;
+
+const dogName: DogSummary = {
+    "name": "josef"
+};
+console.log(dogName);
+
+type UserRoles = "admin" | "customer" | "employee";
+type UserAuthorization = Record<UserRoles, string>;
+
+const authorizationLevel: UserAuthorization = {
+    admin: "yes",
+    customer: "yes",
+    "employee": "yes"
+};
+
+type Color = "black" | "brown" | "white";
+
+type DarkColor = Exclude<Color, "white">;
+
+const darkModeColor: DarkColor = "black";
+
+
+type Flower = {
+    kind: string,
+    color: string
+};
+
+type FlowerWithoutColor = Omit<Flower, "color">;
+
+const flowerKind: FlowerWithoutColor = {
+    "kind": "papatya"
+};
+
+type A = string | boolean | number;
+type B = number;
+type C = Extract<A, B>;
+
+const data: C = 22;
+
+type MaybeNullOrUndefinedNumber = number | null | undefined;
+type NonNullAndUndefined = NonNullable<MaybeNullOrUndefinedNumber>;
+
+const position: NonNullAndUndefined = 22;
+
+// function getNumber(value: number): number {
+//     return value;
+// }
+
+const getNumber = (value: number) => value;
+
+type functionReturnType = ReturnType<typeof getNumber>;
+
+const value: functionReturnType = 22;
+
+class Product {
+    constructor(public name: string, public price: number) { }
 }
-catch (error) {
-    console.log(error);
 
-}
+type ProductInstance = InstanceType<typeof Product>;
 
+// const product: ProductInstance = {
+//     name: "phone",
+//     price: 22
+// };
 
-type AsyncFn<T = unknown> = () => Promise<T>;
-
-const asyncFn: AsyncFn<string> = () => {
-
-    const flag = false;
-    // const flag = true;
-
-    return new Promise<string>((resolve, reject) => {
-        setTimeout(() => {
-            if (flag)
-                resolve("Hello World");
-            else
-                reject("An error occured!")
-        }, 1000)
+const product: ProductInstance = new Product("phone", 22);
 
 
-    });
-}
+type Position = {
+    x?: number,
+    y?: number
+};
 
+type Point = Required<Position>;
 
-try {
-    const result = await asyncFn();
-    console.log(result);
-
-} catch (error) {
-    console.log(error);
-
-}
+const point: Point = {
+    "x": 1,
+    "y": 11
+};
 
 
 
