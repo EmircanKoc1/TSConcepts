@@ -1,48 +1,4 @@
-"use strict";
 // function WriteNumber() {
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
 //     var number1 = 22;
 //     console.log(number1);
 //     let number2 = 22;
@@ -625,17 +581,51 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //     }
 // }
 // Generics();
-const math_1 = require("./math");
-console.log((0, math_1.subtract)(33, 2));
-console.log((0, math_1.sum)(33, 2, 11));
-const person1 = {
-    age: 23,
-    name: "Emircan",
-    surname: "Koç"
-};
-function loadModule() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const module = yield Promise.resolve().then(() => __importStar(require("./math")));
-        console.log(module.sum(2, 3));
-    });
+// import { subtract, sum } from "./math";
+// console.log(subtract(33, 2));
+// console.log(sum(33, 2, 11));
+// import Person from "./person"
+// const person1: Person = {
+//     age: 23,
+//     name: "Emircan",
+//     surname: "Koç"
+// }
+// async function loadModule(): Promise<void> {
+//     const module = await import("./math");
+//     console.log(module.sum(2, 3));
+// }
+const promise = new Promise((resolve, reject) => {
+    // let success = false;
+    let success = false;
+    if (success)
+        return resolve("The process was completed successfully");
+    else
+        return reject("An error occurred!");
+});
+try {
+    const promiseResult = await promise;
+    console.log(promiseResult);
 }
+catch (error) {
+    console.log(error);
+}
+const asyncFn = () => {
+    const flag = false;
+    // const flag = true;
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (flag)
+                resolve("Hello World");
+            else
+                reject("An error occured!");
+        }, 1000);
+    });
+};
+try {
+    const result = await asyncFn();
+    console.log(result);
+}
+catch (error) {
+    console.log(error);
+}
+export {};

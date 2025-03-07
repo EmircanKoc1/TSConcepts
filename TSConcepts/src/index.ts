@@ -898,22 +898,91 @@
 // Generics();
 
 
-import { subtract, sum } from "./math";
+// import { subtract, sum } from "./math";
 
-console.log(subtract(33, 2));
-console.log(sum(33, 2, 11));
+// console.log(subtract(33, 2));
+// console.log(sum(33, 2, 11));
 
-import Person from "./person"
+// import Person from "./person"
 
-const person1: Person = {
-    age: 23,
-    name: "Emircan",
-    surname: "Koç"
+// const person1: Person = {
+//     age: 23,
+//     name: "Emircan",
+//     surname: "Koç"
+// }
+
+
+// async function loadModule(): Promise<void> {
+//     const module = await import("./math");
+//     console.log(module.sum(2, 3));
+
+// }
+
+
+const promise = new Promise<string>((resolve, reject) => {
+
+    // let success = false;
+    let success = false;
+
+    if (success)
+        return resolve("The process was completed successfully")
+    else
+        return reject("An error occurred!")
+
+});
+
+
+// promise.then<void, void>((value) => {
+//     console.log(value);
+
+// }).catch<void>((err: string) => {
+//     console.log(err);
+// });
+
+
+export { };
+
+try {
+    const promiseResult = await promise;
+    console.log(promiseResult);
+
+}
+catch (error) {
+    console.log(error);
+
 }
 
 
-async function loadModule(): Promise<void> {
-    const module = await import("./math");
-    console.log(module.sum(2, 3));
+type AsyncFn<T = unknown> = () => Promise<T>;
+
+const asyncFn: AsyncFn<string> = () => {
+
+    const flag = false;
+    // const flag = true;
+
+    return new Promise<string>((resolve, reject) => {
+        setTimeout(() => {
+            if (flag)
+                resolve("Hello World");
+            else
+                reject("An error occured!")
+        }, 1000)
+
+
+    });
+}
+
+
+try {
+    const result = await asyncFn();
+    console.log(result);
+
+} catch (error) {
+    console.log(error);
 
 }
+
+
+
+
+
