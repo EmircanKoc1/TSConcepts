@@ -983,120 +983,156 @@
 // }
 
 
-//Utility types 
+// //Utility types 
 
-type User = {
-    name: string,
-    age: number,
-    email: string
-};
-
-
-// const user: User = {
-//     name : "emir"
-// }; error
-
-
-type PartialUser = Partial<User>;
-
-const user: PartialUser = {
-    name: "emir"
-};
-
-type Dog = {
-    name: string,
-    color: string
-    kind: string
-};
-
-const readonlyDog: Readonly<Dog> = {
-    name: "robin",
-    color: "black",
-    kind: "bulldog"
-};
-
-// readonlyDog.color = "red"; error because dog is readonly 
-
-type DogSummary = Pick<Dog, "name">;
-
-const dogName: DogSummary = {
-    "name": "josef"
-};
-console.log(dogName);
-
-type UserRoles = "admin" | "customer" | "employee";
-type UserAuthorization = Record<UserRoles, string>;
-
-const authorizationLevel: UserAuthorization = {
-    admin: "yes",
-    customer: "yes",
-    "employee": "yes"
-};
-
-type Color = "black" | "brown" | "white";
-
-type DarkColor = Exclude<Color, "white">;
-
-const darkModeColor: DarkColor = "black";
-
-
-type Flower = {
-    kind: string,
-    color: string
-};
-
-type FlowerWithoutColor = Omit<Flower, "color">;
-
-const flowerKind: FlowerWithoutColor = {
-    "kind": "papatya"
-};
-
-type A = string | boolean | number;
-type B = number;
-type C = Extract<A, B>;
-
-const data: C = 22;
-
-type MaybeNullOrUndefinedNumber = number | null | undefined;
-type NonNullAndUndefined = NonNullable<MaybeNullOrUndefinedNumber>;
-
-const position: NonNullAndUndefined = 22;
-
-// function getNumber(value: number): number {
-//     return value;
-// }
-
-const getNumber = (value: number) => value;
-
-type functionReturnType = ReturnType<typeof getNumber>;
-
-const value: functionReturnType = 22;
-
-class Product {
-    constructor(public name: string, public price: number) { }
-}
-
-type ProductInstance = InstanceType<typeof Product>;
-
-// const product: ProductInstance = {
-//     name: "phone",
-//     price: 22
+// type User = {
+//     name: string,
+//     age: number,
+//     email: string
 // };
 
-const product: ProductInstance = new Product("phone", 22);
+
+// // const user: User = {
+// //     name : "emir"
+// // }; error
 
 
-type Position = {
-    x?: number,
-    y?: number
+// type PartialUser = Partial<User>;
+
+// const user: PartialUser = {
+//     name: "emir"
+// };
+
+// type Dog = {
+//     name: string,
+//     color: string
+//     kind: string
+// };
+
+// const readonlyDog: Readonly<Dog> = {
+//     name: "robin",
+//     color: "black",
+//     kind: "bulldog"
+// };
+
+// // readonlyDog.color = "red"; error because dog is readonly 
+
+// type DogSummary = Pick<Dog, "name">;
+
+// const dogName: DogSummary = {
+//     "name": "josef"
+// };
+// console.log(dogName);
+
+// type UserRoles = "admin" | "customer" | "employee";
+// type UserAuthorization = Record<UserRoles, string>;
+
+// const authorizationLevel: UserAuthorization = {
+//     admin: "yes",
+//     customer: "yes",
+//     "employee": "yes"
+// };
+
+// type Color = "black" | "brown" | "white";
+
+// type DarkColor = Exclude<Color, "white">;
+
+// const darkModeColor: DarkColor = "black";
+
+
+// type Flower = {
+//     kind: string,
+//     color: string
+// };
+
+// type FlowerWithoutColor = Omit<Flower, "color">;
+
+// const flowerKind: FlowerWithoutColor = {
+//     "kind": "papatya"
+// };
+
+// type A = string | boolean | number;
+// type B = number;
+// type C = Extract<A, B>;
+
+// const data: C = 22;
+
+// type MaybeNullOrUndefinedNumber = number | null | undefined;
+// type NonNullAndUndefined = NonNullable<MaybeNullOrUndefinedNumber>;
+
+// const position: NonNullAndUndefined = 22;
+
+// // function getNumber(value: number): number {
+// //     return value;
+// // }
+
+// const getNumber = (value: number) => value;
+
+// type functionReturnType = ReturnType<typeof getNumber>;
+
+// const value: functionReturnType = 22;
+
+// class Product {
+//     constructor(public name: string, public price: number) { }
+// }
+
+// type ProductInstance = InstanceType<typeof Product>;
+
+// // const product: ProductInstance = {
+// //     name: "phone",
+// //     price: 22
+// // };
+
+// const product: ProductInstance = new Product("phone", 22);
+
+
+// type Position = {
+//     x?: number,
+//     y?: number
+// };
+
+// type Point = Required<Position>;
+
+// const point: Point = {
+//     "x": 1,
+//     "y": 11
+// };
+
+
+
+//type guards
+
+interface Person {
+    name: string,
+    age: number
+
 };
 
-type Point = Required<Position>;
+interface Car {
+    model: string;
+}
 
-const point: Point = {
-    "x": 1,
-    "y": 11
-};
+function isPerson(obj: Person | Car): obj is Person {
+
+    return "name" in obj && "age" in obj;
+}
+
+function isCar(obj: Person | Car): obj is Car {
+    return "model" in obj;
+}
+
+const person: Person = {
+    name: "emir",
+    age: 23
+}
+if (isPerson(person)) {
+    console.log("Hellooooooo!", person.name);
+
+} else {
+    console.log("Obj is not a person");
+    
+}
+
 
 
 
